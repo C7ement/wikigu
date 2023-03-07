@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:wikigu/models/page_header.dart';
+import 'package:wikigu/models/util/JsonExtension.dart';
 
 class Cell extends Equatable {
   const Cell({
@@ -22,6 +23,13 @@ class Cell extends Equatable {
             )
             .toList(),
         name: map['name'] as String,
+      );
+
+  static Map<String, Cell> fromList(Map<String, dynamic> cells) => cells.map(
+        (key, value) => MapEntry(
+          key,
+          Cell.fromMap(value as Map<String, dynamic>),
+        ),
       );
 
   final List<PageHeader> headers;
